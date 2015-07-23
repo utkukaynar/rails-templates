@@ -4,7 +4,7 @@ inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do
   "ruby File.read '.ruby-version'\n\n"
 end
 
-file '.ruby-version', '2.1.0'
+file '.ruby-version', '2.1.2'
 
 gem 'devise'
 gem 'twitter-bootstrap-rails'
@@ -12,7 +12,7 @@ gem 'will_paginate-bootstrap'
 gem 'will_paginate'
 
 gem_group :production do
-  gem 'thin'
+  gem 'puma'
   gem 'rails_12factor'
 end
 
@@ -21,11 +21,13 @@ end
 # Disable strong params
 application 'config.action_controller.permit_all_parameters = true'
 application 'config.action_controller.action_on_unpermitted_parameters = :raise'
+application 'config.i18n.default_locale = :tr'
+application "config.time_zone = 'Europe/Istanbul'"
 
 # Read me
 run 'rm README.rdoc'
 file 'README.md', <<-README
-## Template for rapid Rails prototypes
+## Code2 Template for Rails Apps
 * Rails 4
 * No tests / specs
 * Bootstrap
@@ -75,4 +77,3 @@ route 'root to: "application#show"'
 git :init
 git add: "."
 git commit: "-a -m 'F1 Prototype'"
-
